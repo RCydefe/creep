@@ -119,8 +119,8 @@ if input_selection == '1':
         for file in os.listdir(newdir):
           if file.endswith('.flr'):
             with open('%s/%s' %(newdir, file), 'r+') as z:
-                #start of signatures. More signatures are coming.
                 data = mmap.mmap(z.fileno(), 0, access=mmap.ACCESS_READ)
+                #start of signatures. More signatures are coming.
                 ab = re.search(b'on \(release\) {\n   geturl \(_root.clickTAG, "_self"\);\n}', data)
                 aa = re.search(b'\(_root\.urltoload !=null\) {\n[ \t]+GetURL \(_root\.urltoload\)\;+\n([ \t]+}|[}\t])', data)
                 if ab:
