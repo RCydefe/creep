@@ -123,11 +123,22 @@ if input_selection == '1':
                 #start of signatures. More signatures are coming.
                 ab = re.search(b'on \(release\) {\n   geturl \(_root.clickTAG, "_self"\);\n}', data)
                 aa = re.search(b'\(_root\.urltoload !=null\) {\n[ \t]+GetURL \(_root\.urltoload\)\;+\n([ \t]+}|[}\t])', data)
+                ac = re.search(b'navigateToURL\(new URLRequest\(cmd\),"_self"\);',data)
+                ad = re.search(b'navigateToURL\(new URLRequest\(cmd\),"_blank"\);', data)
+                ae = re.search(b'[\s]*var loader:URLLoader = new URLLoader\(new URLRequest\(cmd\)\);\n[\s]*loader\.addEventListener\(Event\.COMPLETE,get_complete\);\n[\s]*loader\.addEventListener\(SecurityErrorEvent\.SECURITY_ERROR,get_sec_error\);', data)
+                af = re.search(b'flash\.external\.ExternalInterface\.call\("eval", cmd\);', data)
                 if ab:
                     print ('Possible vulnerability found in %s'%file)
                 if aa:
                     print ('Possible vulnerability found in %s'%file)
-               
+                if ac:
+                    print ('Possible vulnerability found in %s'%file)
+                if ad:
+                    print ('Possible vulnerability found in %s'%file)
+                if ae:
+                    print ('Possible vulnerability found in %s'%file)
+                if af:
+                    print ('Possible vulnerability found in %s'%file)
 elif input_selection == '2':
     print ('File Creep at your service')
 
