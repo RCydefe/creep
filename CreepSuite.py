@@ -143,7 +143,7 @@ elif input_selection == '2':
     print ('File Creep at your service')
 
     input_url = input('Please enter the target webpage: ')
-    file_type = input('Please enter the file type you wish to download with out the period (Example txt, pdf, pdf) :')
+    file_type = input('Please enter the file type you wish to download with out the period (Example txt, pdf, jpg) :')
     short_url = full_url = ''
     if 'http://' in input_url: # will not handle https
         short_url = input_url[7:]
