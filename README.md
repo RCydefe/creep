@@ -1,6 +1,6 @@
-NAME
+  <b>NAME</b>
 
-  <b>Creep Suite</b>
+  <i>Creep Suite</i>
 
   <b>What's New</b>
 
