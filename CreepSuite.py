@@ -121,12 +121,13 @@ if input_selection == '1':
             with open('%s/%s' %(newdir, file), 'r+') as z:
                 data = mmap.mmap(z.fileno(), 0, access=mmap.ACCESS_READ)
                 #start of signatures. More signatures are coming.
-                ab = re.search(b'on \(release\) {\n   geturl \(_root.clickTAG, "_self"\);\n}', data)
-                aa = re.search(b'\(_root\.urltoload !=null\) {\n[ \t]+GetURL \(_root\.urltoload\)\;+\n([ \t]+}|[}\t])', data)
-                ac = re.search(b'navigateToURL\(new URLRequest\(cmd\),"_self"\);',data)
-                ad = re.search(b'navigateToURL\(new URLRequest\(cmd\),"_blank"\);', data)
+                ab = re.search(b'[\s]on \(release\) {\n[\s]geturl \(_root.clickTAG, "_self"\);\n[\s]}', data)
+                aa = re.search(b'[\s]\(_root\.urltoload !=null\) {\n[\s]+GetURL \(_root\.urltoload\)\;+\n([ \t]+}|[}\t])', data)
+                ac = re.search(b'[\s]navigateToURL\(new URLRequest\(cmd\),"_self"\);',data)
+                ad = re.search(b'[\s]navigateToURL\(new URLRequest\(cmd\),"_blank"\);', data)
                 ae = re.search(b'[\s]*var loader:URLLoader = new URLLoader\(new URLRequest\(cmd\)\);\n[\s]*loader\.addEventListener\(Event\.COMPLETE,get_complete\);\n[\s]*loader\.addEventListener\(SecurityErrorEvent\.SECURITY_ERROR,get_sec_error\);', data)
-                af = re.search(b'flash\.external\.ExternalInterface\.call\("eval", cmd\);', data)
+                af = re.search(b'[\s]flash\.external\.ExternalInterface\.call\("eval", cmd\);', data)
+                ag = re.search(b'[\s]target="_blank"', data)
                 if ab:
                     print ('Possible vulnerability found in %s'%file)
                 if aa:
@@ -139,6 +140,8 @@ if input_selection == '1':
                     print ('Possible vulnerability found in %s'%file)
                 if af:
                     print ('Possible vulnerability found in %s'%file)
+                if ag:
+                    print ('Possible vulnerability found in %s'%file 'Target="_blank" may be unfiltered')
 elif input_selection == '2':
     print ('File Creep at your service')
 
