@@ -63,10 +63,9 @@ if input_selection == '1':
 
         print('The current Working directory is {0}.'.format(cwd))
         if not os.path.isdir(newdir):
-            os.mkdir(newdir, 495);
+            os.mkdir(newdir, 777);
             print('Created new directory {0}.'.format(newdir))
         print('Using \'{0}\' to put downloaded .swf files'.format(newdir))
-        subprocess.call(["sudo","chmod","777","%s"%newdir])
         print ('Running script.. ')
         headers = {'User-Agent': user_agent}
 
@@ -103,19 +102,16 @@ if input_selection == '1':
                     wget.download('http://{0}'.format(url), newdir)
 
         print('\nDownloads completed')
-        subprocess.call(["sudo","chmod","-R","777","%s"%newdir])
         convert = input('would you like to convert the downloaded files ? y or n?: ')
         if convert == 'y':
             for file in os.listdir(newdir):
                 if file.endswith(".swf"):
                     subprocess.call(["sudo","./flare","%s/%s"%(newdir,file)])
-        subprocess.call(["sudo","chmod","-R","777","%s"%newdir])
 
         print('\nConversion complete')
         time.sleep(1)
         print('\nScanning files now')
         time.sleep(1)
-        subprocess.call(["sudo","chmod","-R","777","%s"%newdir])
         for file in os.listdir(newdir):
           if file.endswith('.flr'):
             with open('%s/%s' %(newdir, file), 'r+') as z:
