@@ -189,7 +189,7 @@ def run_signatures(file):
             #'ae': {'pattern': r'*var loader:URLLoader = new URLLoader\(new URLRequest\(cmd\)\);\n*loader\.addEventListener\(Event\.COMPLETE,get_complete\);\n*loader\.addEventListener\(SecurityErrorEvent\.SECURITY_ERROR,get_sec_error\);', 'message':'Possible vulnerability'},
             'af': {'pattern': r'flash\.external\.ExternalInterface\.call\("eval", cmd\);', 'message':'Possible vulnerability'},
             'ag':  {'pattern': r'target="_blank"', 'message':'Target="_blank" may be unfiltered'},
-            'ah':  {'pattern': r'shockwave', 'message':'test succeeded.'},
+            'ah':  {'pattern': r'_root\.createTextField\("tf",0,100,100,640,480\);\n_root\.tf\.html = true;\n_root\.tf\.htmlText = "Hello, " \+ _root\.username \+ "!";', 'message':'test succeeded.'},
         }
         for k, v in sigs.items():
             res = re.findall(v['pattern'],data)
